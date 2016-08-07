@@ -1,12 +1,15 @@
 # estap
 
+[![Build Status](https://travis-ci.org/iefserge/estap.svg?branch=master)](https://travis-ci.org/iefserge/estap)
+[![Coverage Status](https://coveralls.io/repos/github/iefserge/estap/badge.svg?branch=master)](https://coveralls.io/github/iefserge/estap?branch=master)
+
 JavaScript TAP test framework highly inspired by [tape](https://www.npmjs.com/package/tape) and [AVA](https://www.npmjs.com/package/ava).
 
 * **Simple:** Works in Node and browsers, simply import or require it to use. API is very similar to tape and AVA. 100% test coverage.
 * **Concurrent:** All asynchronous tests are run concurrently. Forces to write isolated from each other test cases that don't share a global state.
 * **Useful Features:** Synchronous and asynchronous tests, support for Promises, before/after/beforeEach/afterEach hooks, clean stacktraces.
 
-## Usage
+## USAGE
 
 ```js
 import createSuite from 'estap';
@@ -44,9 +47,9 @@ ok 3 delay callback > setting a timeout
 
 **estap()** - create a test suite that can contain a number of test cases and hooks (before, after, beforeEach and afterEach). Returns a test suite (called `test` below).
 
-**estap.createLock()** - create lock for shared resource access synchronization (see example below).
+**estap.createLock()** - create lock for the shared resource access synchronization (see example below).
 
-#### Test Cases:
+### Tests:
 
 **test([name, ]fn)** - define a synchronous test case using name (optional) and implementation function (`fn`).
 
@@ -58,7 +61,7 @@ ok 3 delay callback > setting a timeout
 
 `.skip` and `.only` modifiers can be added to `test.cb` too.
 
-#### Hooks
+### Hooks
 
 Hooks are tests that run in the specific order relative to the other tests, they can be synchronous or asynchronous too (i.e use `test.before.cb` or return `Promise`). Multiple hooks of the same type run in the same order they were defined.
 
@@ -72,11 +75,11 @@ Hooks are tests that run in the specific order relative to the other tests, they
 
 `.skip` modifier can be added to any hook.
 
-#### Implementation function
+### Implementation function
 
 Implementation function defines a body of each test/hook. It can return nothing (synchronous test) or `Promise` (asynchronous test). Promise rejection results in the test failure. It's called with the assertion object (`t`).
 
-#### Assertion object
+### Assertion object
 
 **t.plan(number)** - set the number of assertions that should run. When reached, ends test asynchronous automatically.
 
@@ -102,7 +105,7 @@ Implementation function defines a body of each test/hook. It can return nothing 
 
 Each assertion can have an optional `message` (string).
 
-#### Concurrency
+### Concurrency
 
 Everything runs concurrently in the same Node process/browser context. However it's possible to synchronize access to any shared resource using locks.
 
@@ -119,12 +122,12 @@ test.beforeEach('setup database', t => {
 test.afterEach('release database', lock.release);
 ```
 
-#### Thanks to
+### Thanks to
 
 * @substack for [tape](https://www.npmjs.com/package/tape), tap-producing test harness for node and browsers, source for many ideas.
 
 * @sindresorhus and AVA team for [AVA](https://github.com/avajs/ava), Futuristic JavaScript test runner, source for many ideas.
 
-#### License
+### License
 
 MIT

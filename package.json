@@ -6,8 +6,8 @@
   "scripts": {
     "build": "mkdir -p dist && babel -d dist lib",
     "lint": "eslint .",
-    "test:browser": "NODE_ENV=test browserify -t babelify test/unit/index.js | tape-run",
-    "test": "NODE_ENV=test nyc --require babel-core/register tape test/unit/index.js test/integration/index.js && nyc check-coverage --lines 100 --functions 100 --branches 100 --statements 100 && npm run lint",
+    "test:browser": "browserify -t babelify test/unit/index.js | tape-run",
+    "test": "NODE_ENV=test nyc --require babel-core/register tape test/unit/index.js test/integration/index.js && nyc check-coverage --lines 100 --functions 100 --branches 100 --statements 100 && npm run test:browser && npm run lint",
     "test:unit": "NODE_ENV=test babel-node test/unit/index.js",
     "test:integration": "NODE_ENV=test babel-node test/integration/index.js",
     "report": "nyc report --reporter=lcov && open coverage/lcov-report/index.html",
@@ -36,6 +36,7 @@
     "babel-preset-es2015": "^6.9.0",
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
+    "coveralls": "^2.11.12",
     "eslint": "^3.2.2",
     "eslint-config-airbnb": "^10.0.0",
     "eslint-config-airbnb-base": "^5.0.1",

@@ -47,9 +47,9 @@ ok 3 delay callback > setting a timeout
 
 **estap()** - create a test suite that can contain a number of test cases and hooks (before, after, beforeEach and afterEach). Returns a test suite (called `test` below).
 
-**estap.createLock()** - create lock for the shared resource access synchronization (see example below).
+**estap.createLock()** - create a lock for the shared resource access synchronization (see example below).
 
-### Tests:
+### Tests
 
 **test([name, ]fn)** - define a synchronous test case using name (optional) and implementation function (`fn`).
 

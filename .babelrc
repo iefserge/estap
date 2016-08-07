@@ -1,0 +1,12 @@
+{
+  "presets": ["es2015"],
+  "env": {
+    "test": {
+      "plugins": [
+        "source-map-support-for-6",
+        "istanbul"
+      ],
+      "sourceMaps": "inline",
+    }
+  }
+}

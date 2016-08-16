@@ -1,7 +1,4 @@
-# estap
-
-[![Build Status](https://travis-ci.org/iefserge/estap.svg?branch=master)](https://travis-ci.org/iefserge/estap)
-[![Coverage Status](https://coveralls.io/repos/github/iefserge/estap/badge.svg?branch=master)](https://coveralls.io/github/iefserge/estap?branch=master)
+# estap [![Build Status](https://travis-ci.org/iefserge/estap.svg?branch=master)](https://travis-ci.org/iefserge/estap) [![Coverage Status](https://coveralls.io/repos/github/iefserge/estap/badge.svg?branch=master)](https://coveralls.io/github/iefserge/estap?branch=master)
 
 JavaScript TAP test framework highly inspired by [tape](https://www.npmjs.com/package/tape) and [AVA](https://www.npmjs.com/package/ava).
 
@@ -45,19 +42,19 @@ ok 3 delay callback > setting a timeout
 
 ## API
 
-**estap()** - create a test suite that can contain a number of test cases and hooks (before, after, beforeEach and afterEach). Returns a test suite (called `test` below).
+`estap()` - create a test suite that can contain a number of test cases and hooks (before, after, beforeEach and afterEach). Returns a test suite (called `test` below).
 
-**estap.createLock()** - create a lock for the shared resource access synchronization (see example below).
+`estap.createLock()` - create a lock for the shared resource access synchronization (see example below).
 
 ### Tests
 
-**test([name, ]fn)** - define a synchronous test case using name (optional) and implementation function (`fn`).
+`test([name, ]fn)` - define a synchronous test case using name (optional) and implementation function (`fn`).
 
-**test.cb([name, ]fn)** - define an asynchronous test case using name (optional) and implementation function (`fn`).
+`test.cb([name, ]fn)` - define an asynchronous test case using name (optional) and implementation function (`fn`).
 
-**test.skip([name, ]fn)** - define a skipped test.
+`test.skip([name, ]fn)` - define a skipped test.
 
-**test.only([name, ]fn)** - define the only test(s) that should run, ignore everything else.
+`test.only([name, ]fn)` - define the only test(s) that should run, ignore everything else.
 
 `.skip` and `.only` modifiers can be added to `test.cb` too.
 
@@ -65,13 +62,13 @@ ok 3 delay callback > setting a timeout
 
 Hooks are tests that run in the specific order relative to the other tests, they can be synchronous or asynchronous too (i.e use `test.before.cb` or return `Promise`). Multiple hooks of the same type run in the same order they were defined.
 
-**test.before([name, ]fn)** - define a test that runs before all the tests in the suite.
+`test.before([name, ]fn)` - define a test that runs before all the tests in the suite.
 
-**test.after([name, ]fn)** - define a test that runs after all the tests in the suite.
+`test.after([name, ]fn)` - define a test that runs after all the tests in the suite.
 
-**test.beforeEach([name, ]fn)** - define a test that runs before every test in the suite.
+`test.beforeEach([name, ]fn)` - define a test that runs before every test in the suite.
 
-**test.afterEach([name, ]fn)** - define a test that runs after every test in the suite.
+`test.afterEach([name, ]fn)` - define a test that runs after every test in the suite.
 
 `.skip` modifier can be added to any hook.
 
@@ -81,27 +78,27 @@ Implementation function defines a body of each test/hook. It can return nothing 
 
 ### Assertion object
 
-**t.plan(number)** - set the number of assertions that should run. When reached, ends test asynchronous automatically.
+`t.plan(number)` - set the number of assertions that should run. When reached, ends test asynchronous automatically.
 
-**t.end(value)** - end asynchronous test. Required only for `*.cb()` tests that don't use `t.plan()`.
+`t.end(value)` - end asynchronous test. Required only for `*.cb()` tests that don't use `t.plan()`.
 
-**t.pass([message])** - passing assertion.
+`t.pass([message])` - passing assertion.
 
-**t.fail([message])** - failing assertion.
+`t.fail([message])` - failing assertion.
 
-**t.is(actual, expected [,message])** - assert that `actual === expected`.
+`t.is(actual, expected [,message])` - assert that `actual === expected`.
 
-**t.not(actual, expected [,message])** - assert that `actual !== expected`.
+`t.not(actual, expected [,message])` - assert that `actual !== expected`.
 
-**t.truthy(value [,message])** - assert that `value` is truthy.
+`t.truthy(value [,message])` - assert that `value` is truthy.
 
-**t.falsy(value [,message])** - assert that `value` is falsy.
+`t.falsy(value [,message])` - assert that `value` is falsy.
 
-**t.same(actual, expected [,message])** - assert that `actual` is strictly deeply equal to `expected`.
+`t.same(actual, expected [,message])` - assert that `actual` is strictly deeply equal to `expected`.
 
-**t.notSame(actual, expected [,message])** - assert that `actual` is not strictly deeply equal to `expected`.
+`t.notSame(actual, expected [,message])` - assert that `actual` is not strictly deeply equal to `expected`.
 
-**t.context** - object that is shared between the test and its beforeEach and afterEach hooks.
+`t.context` - object that is shared between the test and its beforeEach and afterEach hooks.
 
 Each assertion can have an optional `message` (string).
 

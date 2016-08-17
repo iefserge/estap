@@ -427,3 +427,96 @@ ok 1 should pass > pass
   t.is(stderr, '', 'stderr');
   t.end();
 });
+
+execTest('throws-ok.js', (t, err, stdout, stderr) => {
+  t.error(err, 'ok');
+  t.is(stdout, `
+TAP version 13
+ok 1 throws/notThrows > throws
+ok 2 throws/notThrows > throws
+ok 3 throws/notThrows > throws check type
+ok 4 throws/notThrows > throws check type regex
+ok 5 throws/notThrows > throws check type str
+ok 6 throws/notThrows > throws check regex
+ok 7 throws/notThrows > notThrows
+ok 8 throws/notThrows > nothing to throw
+
+1..8
+# passing 8/8
+# ok
+`, 'stdout');
+  t.is(stderr, '', 'stderr');
+  t.end();
+});
+
+execTest('throws-error.js', (t, err, stdout, stderr) => {
+  t.ok(err, 'errored');
+  t.is(stdout, `
+TAP version 13
+not ok 1 throws/notThrows > throws
+  ---
+    op:       throws
+    stack:
+      - 'at <testcallsite>'
+  ...
+not ok 2 throws/notThrows > throws
+  ---
+    op:       throws
+    expected: '(function) [Function: Error]'
+    stack:
+      - 'at <testcallsite>'
+  ...
+not ok 3 throws/notThrows > throws check type
+  ---
+    op:       throws
+    actual:   '(function) [Function: String]'
+    expected: '(function) [Function: Error]'
+    stack:
+      - 'at <testcallsite>'
+  ...
+not ok 4 throws/notThrows > throws check type regex
+  ---
+    op:       throws
+    actual:   '(object) [ [Function: Error], ''Error: zzz'' ]'
+    expected: '(object) [ [Function: Error], /hello-world/ ]'
+    stack:
+      - 'at <testcallsite>'
+  ...
+not ok 5 throws/notThrows > throws check type str
+  ---
+    op:       throws
+    actual:   '(object) [ [Function: TypeError], ''hello-world'' ]'
+    expected: '(object) [ [Function: RangeError], ''hello-world'' ]'
+    stack:
+      - 'at <testcallsite>'
+  ...
+not ok 6 throws/notThrows > throws check regex
+  ---
+    op:       throws
+    actual:   '(string) Error: hello-w0rld'
+    expected: '(object) /hello-world/'
+    stack:
+      - 'at <testcallsite>'
+  ...
+not ok 7 throws/notThrows > notThrows
+  ---
+    op:       notThrows
+    actual:   '(object) [Error]'
+    stack:
+      - 'at <testcallsite>'
+  ...
+not ok 8 throws/notThrows > oh no
+  ---
+    op:       notThrows
+    actual:   '(object) [Error]'
+    stack:
+      - 'at <testcallsite>'
+  ...
+
+1..8
+# passing 0/8 (8 failing)
+# fail
+`, 'stdout');
+  t.is(stderr, '', 'stderr');
+  t.end();
+});

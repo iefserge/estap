@@ -8,3 +8,4 @@ import './run-test';
 import './runner';
 import './serial';
 import './create-suite';
+import './throws-tests';

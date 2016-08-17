@@ -71,6 +71,8 @@ runnerTest('all kinds of passing assertions', runner => {
     t.falsy(false);
     t.falsy(0);
     t.pass();
+    t.true(true);
+    t.false(false);
   });
 }, [
   { type: 'ok', test: 'first', message: 'is' },
@@ -86,7 +88,9 @@ runnerTest('all kinds of passing assertions', runner => {
   { type: 'ok', test: 'first', message: 'falsy' },
   { type: 'ok', test: 'first', message: 'falsy' },
   { type: 'ok', test: 'first', message: 'pass' },
-  { type: 'done', count: 13, ok: 13, error: 0, skip: 0, only: 0 },
+  { type: 'ok', test: 'first', message: 'true' },
+  { type: 'ok', test: 'first', message: 'false' },
+  { type: 'done', count: 15, ok: 15, error: 0, skip: 0, only: 0 },
 ], true);
 
 runnerTest('all kinds of passing assertions with messages', runner => {
@@ -106,6 +110,8 @@ runnerTest('all kinds of passing assertions with messages', runner => {
     t.falsy(false, 'a11');
     t.falsy(0, 'a12');
     t.pass('a13');
+    t.true(true, 'a14');
+    t.false(false, 'a15');
   });
 }, [
   { type: 'ok', test: 'first', message: 'a1' },
@@ -121,7 +127,9 @@ runnerTest('all kinds of passing assertions with messages', runner => {
   { type: 'ok', test: 'first', message: 'a11' },
   { type: 'ok', test: 'first', message: 'a12' },
   { type: 'ok', test: 'first', message: 'a13' },
-  { type: 'done', count: 13, ok: 13, error: 0, skip: 0, only: 0 },
+  { type: 'ok', test: 'first', message: 'a14' },
+  { type: 'ok', test: 'first', message: 'a15' },
+  { type: 'done', count: 15, ok: 15, error: 0, skip: 0, only: 0 },
 ], true);
 
 runnerTest('few passing tests', runner => {
@@ -163,6 +171,33 @@ runnerTest('single failing test', runner => {
     stack: ['at <test>'],
   },
   { type: 'done', count: 1, ok: 0, error: 1, skip: 0, only: 0 },
+], false);
+
+runnerTest('other failing tests', runner => {
+  const defineTest = runner();
+
+  defineTest('first', t => {
+    t.true(false);
+    t.false(true);
+  });
+}, [
+  { type: 'error',
+    test: 'first',
+    message: 'true',
+    op: 'true',
+    actual: false,
+    expected: true,
+    stack: ['at <test>'],
+  },
+  { type: 'error',
+    test: 'first',
+    message: 'false',
+    op: 'false',
+    actual: true,
+    expected: false,
+    stack: ['at <test>'],
+  },
+  { type: 'done', count: 2, ok: 0, error: 2, skip: 0, only: 0 },
 ], false);
 
 runnerTest('single failing test without message', runner => {

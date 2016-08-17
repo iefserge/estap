@@ -90,13 +90,21 @@ Implementation function defines a body of each test/hook. It can return nothing 
 
 `t.not(actual, expected [,message])` - assert that `actual !== expected`.
 
+`t.same(actual, expected [,message])` - assert that `actual` is strictly deeply equal to `expected`.
+
+`t.notSame(actual, expected [,message])` - assert that `actual` is not strictly deeply equal to `expected`.
+
 `t.truthy(value [,message])` - assert that `value` is truthy.
 
 `t.falsy(value [,message])` - assert that `value` is falsy.
 
-`t.same(actual, expected [,message])` - assert that `actual` is strictly deeply equal to `expected`.
+`t.true(value [,message])` - assert that `value === true`.
 
-`t.notSame(actual, expected [,message])` - assert that `actual` is not strictly deeply equal to `expected`.
+`t.false(value [,message])` - assert that `value === false`.
+
+`t.throws(fn [,expected] [,message])` - assert that function `fn` throws an exception. `expected` can be a constructor function for instanceof check (i.e. `Error` etc), error message test regex or an array of `[constructor, regex]` or `[constructor, string]`.
+
+`t.notThrows(fn [,message])` - assert that function `fn` does not throw an exception.
 
 `t.context` - object that is shared between the test and its beforeEach and afterEach hooks.
 

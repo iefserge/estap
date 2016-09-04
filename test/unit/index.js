@@ -9,3 +9,4 @@ import './runner';
 import './serial';
 import './create-suite';
 import './throws-tests';
+import './t-after-tests';

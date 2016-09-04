@@ -106,6 +106,8 @@ Implementation function defines a body of each test/hook. It can return nothing 
 
 `t.notThrows(fn [,message])` - assert that function `fn` does not throw an exception.
 
+`t.after(fn)` - register a function to run after the current test. Useful to do a clean up.
+
 `t.context` - object that is shared between the test and its beforeEach and afterEach hooks.
 
 Each assertion can have an optional `message` (string).
